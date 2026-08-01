@@ -88,11 +88,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoo\\LuckyGoo.csproj",
-      "projectName": "LuckyGoo",
-      "projectPath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoo\\LuckyGoo.csproj",
+      "projectUniqueName": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoO.csproj",
+      "projectName": "LuckyGoO",
+      "projectPath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoO.csproj",
       "packagesPath": "C:\\Users\\Deus\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoo\\obj\\",
+      "outputPath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Deus\\AppData\\Roaming\\NuGet\\NuGet.Config"

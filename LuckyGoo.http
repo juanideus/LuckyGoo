@@ -1,6 +1,6 @@
-@LuckyGoo_HostAddress = http://localhost:5293
+@LuckyGoO_HostAddress = http://localhost:5185
 
-GET {{LuckyGoo_HostAddress}}/weatherforecast/
+GET {{LuckyGoO_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
