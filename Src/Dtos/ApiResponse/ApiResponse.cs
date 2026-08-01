@@ -2,15 +2,21 @@ namespace ApiResponse
 {
     public class ApiResponse<T>
     {
-        public bool Success { get; set; }
-        public string Message { get; set; }
-        public T Data { get; set; }
+        public int Status { get; set; }
+        public string Message { get; set; } = string.Empty;
+        public T? Data { get; set; }
 
-        public ApiResponse(bool success, string message, T data)
+        public static ApiResponse<T> Success(T? data, string message = "Ok", int status = 200) => new()
         {
-            Success = success;
-            Message = message;
-            Data = data;
-        }
+            Status = status,
+            Message = message,
+            Data = data
+        };
+        public static ApiResponse<T> Fail(string message, int status = 400) => new()
+        {
+            Status = status,
+            Message = message,
+            Data = default
+        };
     }
 }
