@@ -4,11 +4,8 @@ using LUCKYGOO.Src.Db.Seeder;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+// 👇 Todo el registro de servicios va ANTES de Build()
 builder.Services.AddOpenApi();
-
-var app = builder.Build();
-app.UseCors("AllowFrontend");
 builder.Services.AddControllers();
 
 var ConnectionString = builder.Configuration.GetConnectionString("DefaultConnection");
@@ -22,20 +19,29 @@ builder.Services.AddDbContext<ContextDb>(
     )
 );
 
+// Si tienes CORS, también se registra el servicio antes de Build()
+// builder.Services.AddCors(options => { ... }); 
+
+var app = builder.Build();   // 👈 AHORA sí, con todo ya registrado
+
+// A partir de aquí, solo configuras el pipeline (middlewares), no registras servicios
+app.UseCors("AllowFrontend");
+
 using (var scope = app.Services.CreateScope())
 {
     try
     {
-        // Inicializamos la base de datos y ejecutamos el seeder para poblarla con datos iniciales
         var context = scope.ServiceProvider.GetRequiredService<ContextDb>();
         await new Seeder(context).Seed();
         Console.WriteLine("Base de datos inicializada correctamente.");
-    }catch (Exception ex)
+    }
+    catch (Exception ex)
     {
         Console.WriteLine($"Error al inicializar la base de datos: {ex.Message}");
     }
 }
-app.UseAuthentication(); // añadimos la autenticacion como middleware para que se ejecute en cada request y valide el token
+
+app.UseAuthentication();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();

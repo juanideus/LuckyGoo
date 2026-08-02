@@ -7,7 +7,7 @@ namespace LUCKYGOO.Src.Db
     /// ContextDb sirve como un ORM para interactuar con la base de datos, permitiendo realizar operaciones CRUD y consultas de manera eficiente y estructurada.
     /// </summary>
     /// <param name="options"></param>
-    public class ContextDb(DbContextOptions<DbContext> options) : DbContext(options)
+    public class ContextDb(DbContextOptions<ContextDb> options) : DbContext(options)
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Rol> Roles { get; set; }
