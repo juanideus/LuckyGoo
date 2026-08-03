@@ -6,7 +6,9 @@ using Src.Middleware;
 using LUCKYGOO.Src.Services;
 using LUCKYGOO.Src.Services.Interfaces;
 using Microsoft.AspNetCore.RateLimiting;
+
 using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
@@ -39,7 +41,8 @@ builder.Services.AddDbContext<ContextDb>(
 );
 //services
 builder.Services.AddScoped<IAuthServices, AuthServices>();
-builder.Services.Configure<Microsoft.AspNetCore.Mvc.ApiBehaviorOptions>(options =>
+builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.InvalidModelStateResponseFactory = context =>
     {

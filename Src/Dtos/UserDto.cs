@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using LUCKYGOO.Src.Model;
 namespace LUCKYGOO.Src.Dtos.User
 {
 
@@ -35,5 +36,13 @@ namespace LUCKYGOO.Src.Dtos.User
         //TEMPORAL HASTA QUE CONFIGUREMOS EL SERVICIO DE CORREO PARA ENVIAR EL MENSAJE DE CONFIRMACION
         public required string Password { get; set; }
         public required string Message { get; set; }
+    }
+    public class GetUserDto
+    {
+        public required int Id { get; set; }
+        public required string Name { get; set; }
+        public required string Email { get; set; }
+        public required int Age { get; set; }
+        
     }
 }
