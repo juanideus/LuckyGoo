@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jzXe43NNRyI=",
+  "dgSpecHash": "r69dLkMRV98=",
   "success": true,
-  "projectFilePath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoO.csproj",
+  "projectFilePath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Deus\\.nuget\\packages\\bcrypt.net-next\\4.2.0\\bcrypt.net-next.4.2.0.nupkg.sha512",
     "C:\\Users\\Deus\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

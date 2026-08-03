@@ -8,6 +8,7 @@ namespace LUCKYGOO.Src.Model
         public required string Name { get; set; }
         public required string Email { get; set; }
         public string Password { get; set; } = string.Empty;
+        public int Age { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? DeletedAt { get; set; }
         public int RolId { get; set; }

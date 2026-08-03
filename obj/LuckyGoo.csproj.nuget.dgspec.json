@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoO.csproj": {}
+    "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoO.csproj": {
+    "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoO.csproj",
-        "projectName": "LuckyGoO",
-        "projectPath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoO.csproj",
+        "projectUniqueName": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoo.csproj",
+        "projectName": "LuckyGoo",
+        "projectPath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\LuckyGoo.csproj",
         "packagesPath": "C:\\Users\\Deus\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\deus\\Desktop\\proyectos\\java\\LuckyGoO\\obj\\",
         "projectStyle": "PackageReference",

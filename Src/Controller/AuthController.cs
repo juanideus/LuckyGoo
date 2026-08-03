@@ -29,6 +29,18 @@ namespace LUCKYGOO.Src.Controller
                 Message = "Login exitoso",
             });
         }
+        [HttpPost("register")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
+        {
+            var result = await _authServices.Register(registerDto);
+            return Ok(new ApiResponse<string>
+            {
+                Status = StatusCodes.Status201Created,
+                Message = result.Message,
+                Data = result.Password
+            });
+        }
         private void AppendToken(string token)
         {
             Response.Cookies.Append("jwt", token, new CookieOptions

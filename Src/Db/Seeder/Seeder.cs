@@ -25,6 +25,7 @@ namespace LUCKYGOO.Src.Db.Seeder
                     Name = "Antonio Barraza Guzmán",
                     Email = "antonio.barraza.guzman@gmail.com",
                     Password = BCrypt.Net.BCrypt.HashPassword("Luckygo23"),
+                    Age = 35,
                     IsDeleted = false,
                     DeletedAt = null,
                     RolId = _context.Roles.First(r => r.Name == "Admin").Id
