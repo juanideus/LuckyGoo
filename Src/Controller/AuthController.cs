@@ -9,7 +9,7 @@ namespace LUCKYGOO.Src.Controller
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class AuthController(IAuthServices authServices,IHostEnvironment env) : ControllerBase
+    public class AuthController(IAuthServices authServices, IHostEnvironment env) : ControllerBase
     {
 
         private readonly IAuthServices _authServices = authServices;
@@ -22,7 +22,7 @@ namespace LUCKYGOO.Src.Controller
 
             //enviamos el token por la cokie
             AppendToken(result);
-            
+
             return Ok(new ApiResponse<string>
             {
                 Status = StatusCodes.Status200OK,
@@ -34,7 +34,7 @@ namespace LUCKYGOO.Src.Controller
         public async Task<IActionResult> Register([FromBody] RegisterDto registerDto)
         {
             var result = await _authServices.Register(registerDto);
-            return Ok(new ApiResponse<string>
+            return StatusCode(StatusCodes.Status201Created, new ApiResponse<string>
             {
                 Status = StatusCodes.Status201Created,
                 Message = result.Message,
