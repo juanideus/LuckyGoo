@@ -19,7 +19,7 @@ namespace LUCKYGOO.Src.Services
             //si no encontramos al usuario lanzamos un NotFoundException
             if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
             {
-                throw new badRequestException("Usuario o contraseña incorrectos");
+                throw new badRequestException("usuario no registrado o contraseña incorrecta");
             }
             //verificamos si el usuario esta eliminado
             if (user.IsDeleted)
