@@ -13,12 +13,24 @@ public class UsersController(IUserServices userServices) : ControllerBase
     public async Task<IActionResult> GetUsers()
     {
         var users = await _userServices.GetUsers();
-
+        
         return Ok(new ApiResponse<List<GetUserDto>>
         {
             Status = StatusCodes.Status200OK,
             Message = "Usuarios obtenidos correctamente",
             Data = users
+        });
+    }
+    [HttpPatch("Status")]
+    public async Task<IActionResult> ChangeUserStatus([FromQuery]int userId)
+    {
+        var result = await _userServices.ChangeUserStatus(userId);
+
+        return Ok(new ApiResponse<string>
+        {
+            Status = StatusCodes.Status200OK,
+            Message = result,
+            Data = null
         });
     }
 }

@@ -8,7 +8,7 @@ namespace LUCKYGOO.Src.Exceptions
     public class NotFoundException(string message)
         : AppException(message, StatusCodes.Status404NotFound);
     
-    public class badRequestException(string message)
+    public class BadRequestException(string message)
         : AppException(message, StatusCodes.Status400BadRequest);
 
     public class ValidationException(string message)

@@ -20,12 +20,12 @@ namespace LUCKYGOO.Src.Services
             //si no encontramos al usuario lanzamos un NotFoundException
             if (user == null || !BCrypt.Net.BCrypt.Verify(loginDto.Password, user.Password))
             {
-                throw new badRequestException("usuario no registrado o contraseña incorrecta");
+                throw new BadRequestException("usuario no registrado o contraseña incorrecta");
             }
             //verificamos si el usuario esta eliminado
             if (user.IsDeleted)
             {
-                throw new badRequestException("El usuario esta inactivo, contacte con el administrador");
+                throw new BadRequestException("El usuario esta inactivo, contacte con el administrador");
             }
 
             var token = GenerateToken.getToken(user, _configuration);
@@ -38,7 +38,7 @@ namespace LUCKYGOO.Src.Services
             var user = await _contextDb.Users.FirstOrDefaultAsync(u => u.Email.ToLower() == registerDto.Email.ToLower());
             if (user != null)
             {
-                throw new badRequestException("El correo electrónico ingresado ya existe en el sistema");
+                throw new BadRequestException("El correo electrónico ingresado ya existe en el sistema");
             }
             //creamos el usuario
             var password = GeneratePassword.GenerateRandomPassword();
