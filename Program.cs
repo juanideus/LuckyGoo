@@ -42,6 +42,7 @@ builder.Services.AddDbContext<ContextDb>(
 //services
 builder.Services.AddScoped<IAuthServices, AuthServices>();
 builder.Services.AddScoped<IUserServices, UserServices>();
+builder.Services.AddScoped<IRaffleServices, RaffleServices>();
 builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
     options.InvalidModelStateResponseFactory = context =>

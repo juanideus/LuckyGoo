@@ -13,5 +13,6 @@ namespace LUCKYGOO.Src.Model
         public DateTime? DeletedAt { get; set; }
         public int RolId { get; set; }
         public Rol Rol { get; set; } = null!;
+        public ICollection<Raffle> Raffles { get; set; } = [];
     }
 }
