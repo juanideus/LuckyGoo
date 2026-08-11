@@ -35,5 +35,17 @@ namespace LUCKYGOO.Src.Controller
                 Message = result
             });
         }
+        [HttpGet]
+        public async Task<IActionResult> GetRaffles()
+        {
+            var raffles = await _raffleServices.GetRaffles();
+
+            return Ok(new ApiResponse<List<RaffleResponseDto>>
+            {
+                Status = StatusCodes.Status200OK,
+                Message = "Sorteos obtenidos correctamente",
+                Data = raffles
+            });
+        }
     }
 }

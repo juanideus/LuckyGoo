@@ -15,4 +15,12 @@ namespace LUCKYGOO.Src.Dtos
         public List<int>? NumbersOfLucky { get; set; }
 
     }
+    public class RaffleResponseDto
+    {
+        public int Id { get; set; }
+        public DateOnly DateOfRaffle { get; set; }
+        public required bool IsLuckyRaffle { get; set; }
+        public required List<int> WinningNumbers { get; set; }
+        public List<int>? NumbersOfLucky { get; set; }
+    }
 }

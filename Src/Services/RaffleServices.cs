@@ -2,7 +2,10 @@ using LUCKYGOO.Src.Db;
 using LUCKYGOO.Src.Services.Interfaces;
 using LUCKYGOO.Src.Dtos;
 using LUCKYGOO.Src.Model.Enums;
+using Microsoft.EntityFrameworkCore;
 using LUCKYGOO.Src.Model;
+using LUCKYGOO.Src.Exceptions;
+
 
 public class RaffleServices(ContextDb contextDb) : IRaffleServices
 {
@@ -13,11 +16,11 @@ public class RaffleServices(ContextDb contextDb) : IRaffleServices
 
         if (raffle.WinningNumbers.Count != 5)
         {
-            throw new ArgumentException("Debe seleccionar exactamente 5 números por categoría.");
+            throw new BadRequestException("Debe seleccionar exactamente 5 números ganadores para el sorteo.");
         }
         if (raffle.IsLuckyRaffle && (raffle.NumbersOfLucky == null || raffle.NumbersOfLucky.Count != 5))
         {
-            throw new ArgumentException("Debe seleccionar exactamente 5 números para el sorteo de la suerte.");
+            throw new BadRequestException("Debe seleccionar exactamente 5 números para el sorteo de la suerte.");
         }
         var newRaffle = new Raffle
         {
@@ -51,5 +54,20 @@ public class RaffleServices(ContextDb contextDb) : IRaffleServices
         await _contextDb.SaveChangesAsync();
 
         return "Sorteo registrado correctamente";
+    }
+    public async Task<List<RaffleResponseDto>> GetRaffles()
+    {
+        //consultamos ala db
+        var raffles = await _contextDb.Raffles.Select(r => new RaffleResponseDto
+        {
+            Id = r.Id,
+            DateOfRaffle = r.DateOfRaffle,
+            IsLuckyRaffle = r.IsLuckyRaffle,
+            WinningNumbers = r.Numbers.Where(n => n.Type == RaffleNumberType.WinningNumber).Select(n => n.Number).ToList(),
+            NumbersOfLucky = r.IsLuckyRaffle ? r.Numbers.Where(n => n.Type == RaffleNumberType.LuckyNumber).Select(n => n.Number).ToList() : null
+        }).ToListAsync();
+
+
+        return raffles;
     }
 }
