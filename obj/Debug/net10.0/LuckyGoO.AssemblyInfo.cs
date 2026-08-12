@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LuckyGoo")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a7dc7cfad0396d9e80e348c53469ae6336e21ab2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1318ae50412a45638c16594923b017a3fe23ac2f")]
 [assembly: System.Reflection.AssemblyProductAttribute("LuckyGoo")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LuckyGoo")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -31,6 +31,14 @@ namespace LUCKYGOO.Src.Dtos.User
         public required int Age { get; set; }
 
     }
+    public class UserRaffleDto
+    {
+        
+        public required string Name { get; set; }
+        public required DateTime CreatedAt { get; set; }
+        
+        
+    }
     public class RegisterResponseDto
     {
         //TEMPORAL HASTA QUE CONFIGUREMOS EL SERVICIO DE CORREO PARA ENVIAR EL MENSAJE DE CONFIRMACION

@@ -6,5 +6,6 @@ namespace LUCKYGOO.Src.Services.Interfaces
     {
         public Task<string> RegisterRaffle(RaffleDto raffle, int userId);
         public Task<List<RaffleResponseDto>> GetRaffles();
+        public Task<string> BuyRaffle(int userId, BuyRaffleDto buyRaffleDto);
     }
 }

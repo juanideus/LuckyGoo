@@ -4,10 +4,11 @@ namespace LUCKYGOO.Src.Model
     {
         public int Id { get; set; }
         public DateOnly DateOfRaffle { get; set; }
-        public int quantityOfTickets { get; set; } = 0;
+        public int QuantityOfTickets { get; set; } = 0;
         public int SubTotal { get; set; } = 0;
         public int SubTotalWhitLucky { get; set; } = 0;
         public int Total { get; set; } = 0;
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public ICollection<RaffleNumbers> Numbers { get; set; } =[];
          public required bool IsLuckyRaffle { get; set; }
         
