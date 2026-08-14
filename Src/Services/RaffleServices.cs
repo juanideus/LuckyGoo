@@ -78,15 +78,39 @@ public class RaffleServices(ContextDb contextDb) : IRaffleServices
 
         return raffles;
     }
-    public Task<string> BuyRaffle(int userId, BuyRaffleDto buyRaffleDto)
+    public async Task<string> BuyRaffle(int userId, BuyRaffleDto buyRaffleDto)
     {
         //aunque siempre tengamos el id del raffle lo consultamos para validar que exista
-        var raffle = _contextDb.Raffles.FirstOrDefault(r => r.Id == buyRaffleDto.RaffleId);
+        var raffle = _contextDb.Raffles.FirstOrDefault(r => r.Id == buyRaffleDto.RaffleId) ?? throw new NotFoundException("El sorteo no existe.");
 
-        if (raffle == null)
+        
+        // Validamos que el sorteo no haya pasado
+        if (raffle.DateOfRaffle < DateOnly.FromDateTime(DateTime.Now))
         {
-            throw new NotFoundException("El sorteo no existe.");
+            throw new BadRequestException("El sorteo ya ha pasado.");
         }
+        if (raffle.QuantityOfTickets <= 0)
+        {
+            throw new BadRequestException("No hay boletos disponibles para este sorteo.");
+        }
+        var user = await _contextDb.Users.FirstOrDefaultAsync(u => u.Id == userId) ?? throw new NotFoundException("El usuario no existe.");
+
+        //creamos el ticket
+        var ticket = new Ticket
+        {
+            Code = Guid.NewGuid().ToString(), // Generamos un código único para el ticket
+            RaffleId = raffle.Id,
+            Raffle = raffle,
+            Payment = new Payment
+            {
+                PaymentMethod = PaymentMethod.CreditCard, // Por ejemplo, se puede cambiar según la lógica de pago
+                PaymentStatus = PaymentStatus.Pending,
+                Amount = 10.00m, // Por ejemplo, se puede calcular según la lógica de precio del sorteo
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            },
+            CreatedAt = DateTime.UtcNow
+        };
         throw new NotImplementedException("La compra de sorteos aún no está implementada.");
 
     }

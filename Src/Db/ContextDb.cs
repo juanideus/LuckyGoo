@@ -13,6 +13,9 @@ namespace LUCKYGOO.Src.Db
         public DbSet<Rol> Roles { get; set; }
         public DbSet<Raffle> Raffles { get; set; }
         public DbSet<RaffleNumbers> RaffleNumbers { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<TicketNumbers> TicketNumbers { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,6 +55,33 @@ namespace LUCKYGOO.Src.Db
                     rn.Type
                 })
             .IsUnique();
+            modelBuilder.Entity<Ticket>(e =>
+            {
+              e.HasKey(t => t.Id);
+              e.HasOne(t => t.Payment).WithOne(p => p.Ticket).HasForeignKey<Payment>(p => p.TicketId);
+            });
+            modelBuilder.Entity<Payment>(e =>
+            {
+                e.HasKey(p => p.Id);
+                
+                // Relación uno a uno con Ticket
+                e.HasOne(p => p.Ticket)
+                    .WithOne(t => t.Payment)
+                    .HasForeignKey<Payment>(p => p.TicketId)
+                    .OnDelete(DeleteBehavior.Restrict);  // No permitir eliminar ticket si existe pago
+                
+                // Índice único para evitar pagos duplicados por ticket
+                e.HasIndex(p => p.TicketId).IsUnique();
+                
+                // Índices para queries frecuentes
+                e.HasIndex(p => p.PaymentStatus);
+                e.HasIndex(p => p.CreatedAt);
+                e.HasIndex(p => p.TransactionId);
+                
+                // Configuración de precisión para moneda
+                e.Property(p => p.Amount)
+                    .HasPrecision(18, 2);
+            });
         }
     }
 

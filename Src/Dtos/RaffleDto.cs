@@ -38,5 +38,6 @@ namespace LUCKYGOO.Src.Dtos
 
         [Required(ErrorMessage = "Debe seleccionar los números del sorteo")]
         public required List<int> SelectedNumbers { get; set; }
+        public required List<int>? SelectedLuckyNumbers { get; set; }
     }
 }
