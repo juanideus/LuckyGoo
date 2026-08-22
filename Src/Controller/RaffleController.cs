@@ -35,7 +35,7 @@ namespace LUCKYGOO.Src.Controller
                 Message = result
             });
         }
-        [HttpGet]
+        [HttpGet("raffles")]
         public async Task<IActionResult> GetRaffles()
         {
             var raffles = await _raffleServices.GetRaffles();
@@ -47,5 +47,30 @@ namespace LUCKYGOO.Src.Controller
                 Data = raffles
             });
         }
+        [HttpGet("raffle")]
+        public async Task<IActionResult> GetRaffleInCourse()
+        {
+            var raffleInCourse = await _raffleServices.GetRaffleInCourse();
+
+            return Ok(new ApiResponse<RaffleInCourseDto>
+            {
+                Status = StatusCodes.Status200OK,
+                Message = "Sorteo en curso obtenido correctamente",
+                Data = raffleInCourse
+            });
+        }
+        [HttpPost("buy")]
+        public async Task<IActionResult> BuyRaffle([FromBody] BuyRaffleDto buyRaffleDto)
+        {
+            //llamamos al servicio para comprar el sorteo
+            var result = await _raffleServices.BuyRaffle(buyRaffleDto);
+            return Ok(new ApiResponse<string>
+            {
+                Status = StatusCodes.Status200OK,
+                Message = "Sorteo comprado correctamente",
+                Data = result
+            });
+        }
     }
+
 }

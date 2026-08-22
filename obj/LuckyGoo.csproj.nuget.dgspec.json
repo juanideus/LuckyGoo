@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Deus\\desktop\\proyectos\\java\\LuckyGoo\\LuckyGoo.csproj": {}
+    "C:\\Users\\Deus\\Desktop\\proyectos\\java\\Luckygoo\\LuckyGoo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Deus\\desktop\\proyectos\\java\\LuckyGoo\\LuckyGoo.csproj": {
+    "C:\\Users\\Deus\\Desktop\\proyectos\\java\\Luckygoo\\LuckyGoo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Deus\\desktop\\proyectos\\java\\LuckyGoo\\LuckyGoo.csproj",
+        "projectUniqueName": "C:\\Users\\Deus\\Desktop\\proyectos\\java\\Luckygoo\\LuckyGoo.csproj",
         "projectName": "LuckyGoo",
-        "projectPath": "C:\\Users\\Deus\\desktop\\proyectos\\java\\LuckyGoo\\LuckyGoo.csproj",
+        "projectPath": "C:\\Users\\Deus\\Desktop\\proyectos\\java\\Luckygoo\\LuckyGoo.csproj",
         "packagesPath": "C:\\Users\\Deus\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Deus\\desktop\\proyectos\\java\\LuckyGoo\\obj\\",
+        "outputPath": "C:\\Users\\Deus\\Desktop\\proyectos\\java\\Luckygoo\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Deus\\AppData\\Roaming\\NuGet\\NuGet.Config"

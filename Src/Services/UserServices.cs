@@ -21,6 +21,7 @@ namespace LUCKYGOO.Src.Services
                     Name = u.Name,
                     Email = u.Email,
                     Age = u.Age,
+                    QuantityOfRaffles = _context.Raffles.Count(r => r.UserId == u.Id)       ,
                     IsDeleted = u.IsDeleted
                 })
                 .ToListAsync();

@@ -64,22 +64,29 @@ public class RaffleServices(ContextDb contextDb) : IRaffleServices
             {
                 Id = r.Id,
                 DateOfRaffle = r.DateOfRaffle,
+                QuantityOfTickets = r.QuantityOfTickets,
+                SubTotal = r.SubTotal,
+                SubTotalWhitLucky = r.SubTotalWhitLucky,
+                Total = r.Total,
                 IsLuckyRaffle = r.IsLuckyRaffle,
-                WinningNumbers = r.Numbers.Where(n => n.Type == RaffleNumberType.WinningNumber).Select(n => n.Number).ToList(),
-                NumbersOfLucky = r.IsLuckyRaffle ? r.Numbers.Where(n => n.Type == RaffleNumberType.LuckyNumber).Select(n => n.Number).ToList() : null,
+               
                 User = new UserRaffleDto
                 {
                     Name = r.CreatedBy.Name,
                     CreatedAt = r.CreatedAt
                 }
             })
-            .Where(r => r.DateOfRaffle >= DateOnly.FromDateTime(DateTime.Now))
+
             .ToListAsync();
 
         return raffles;
     }
-    public async Task<string> BuyRaffle(int userId, BuyRaffleDto buyRaffleDto)
+    public async Task<string> BuyRaffle(BuyRaffleDto buyRaffleDto)
     {
+        if (buyRaffleDto.SelectedNumbers.Count != 5)
+        {
+            throw new BadRequestException("Debe seleccionar exactamente 5 números para el sorteo.");
+        }
         //aunque siempre tengamos el id del raffle lo consultamos para validar que exista
         var raffle = _contextDb.Raffles.FirstOrDefault(r => r.Id == buyRaffleDto.RaffleId) ?? throw new NotFoundException("El sorteo no existe.");
 
@@ -93,7 +100,7 @@ public class RaffleServices(ContextDb contextDb) : IRaffleServices
         {
             throw new BadRequestException("No hay boletos disponibles para este sorteo.");
         }
-        var user = await _contextDb.Users.FirstOrDefaultAsync(u => u.Id == userId) ?? throw new NotFoundException("El usuario no existe.");
+        
 
         //creamos el ticket
         var ticket = new Ticket
@@ -111,7 +118,30 @@ public class RaffleServices(ContextDb contextDb) : IRaffleServices
             },
             CreatedAt = DateTime.UtcNow
         };
-        throw new NotImplementedException("La compra de sorteos aún no está implementada.");
+        //devolvemos el codigo del ticket para que el usuario pueda ver su ticket comprado
+        return ticket.Code;
+        
 
+    }
+    public async Task<RaffleInCourseDto> GetRaffleInCourse()
+    {
+        //obtenemso el sorteo para este domingo o el siguiente que este disponible
+        var raffleInCourse = await _contextDb.Raffles
+            .Where(r => r.DateOfRaffle >= DateOnly.FromDateTime(DateTime.Now))
+            .OrderBy(r => r.DateOfRaffle)
+            .Select(r => new RaffleInCourseDto
+            {
+                Id = r.Id,
+                DateOfRaffle = r.DateOfRaffle,
+                IsLuckyRaffle = r.IsLuckyRaffle
+            })
+            .FirstOrDefaultAsync();
+
+        if (raffleInCourse == null)
+        {
+            throw new NotFoundException("No hay sorteos en curso.");
+        }
+
+        return raffleInCourse;
     }
 }

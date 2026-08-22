@@ -41,6 +41,26 @@ namespace LUCKYGOO.Src.Controller
                 Data = result.Password
             });
         }
+        [HttpGet("me")]
+        public async Task<IActionResult> GetCurrentUser()
+        {
+            //validamos el token y obtenemos el id del usuario logueado
+            var rawUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (!int.TryParse(rawUserId, out int userId))
+            {
+                return Unauthorized(new ApiResponse<string>
+                {
+                    Status = StatusCodes.Status401Unauthorized,
+                    Message = "No se pudo validar la sesión del usuario."
+                });
+            }
+            return Ok(new ApiResponse<bool>
+            {
+                Status = StatusCodes.Status200OK,
+                Message = "Usuario obtenido correctamente",
+                Data = true
+                            });
+        }
         private void AppendToken(string token)
         {
             Response.Cookies.Append("jwt", token, new CookieOptions
@@ -53,4 +73,5 @@ namespace LUCKYGOO.Src.Controller
         }
 
     }
+
 }

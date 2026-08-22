@@ -27,8 +27,7 @@ namespace LUCKYGOO.Src.Dtos
         public int SubTotalWhitLucky { get; set; }
         public int Total { get; set; }
         public required bool IsLuckyRaffle { get; set; }
-        public required List<int> WinningNumbers { get; set; }
-        public List<int>? NumbersOfLucky { get; set; }
+        
         public required UserRaffleDto? User { get; set; }
     }
     public class BuyRaffleDto
@@ -39,5 +38,12 @@ namespace LUCKYGOO.Src.Dtos
         [Required(ErrorMessage = "Debe seleccionar los números del sorteo")]
         public required List<int> SelectedNumbers { get; set; }
         public required List<int>? SelectedLuckyNumbers { get; set; }
+    }
+    public class RaffleInCourseDto
+    {
+        public int Id { get; set; }
+        public DateOnly DateOfRaffle { get; set; }
+        public required bool IsLuckyRaffle { get; set; }
+        
     }
 }
